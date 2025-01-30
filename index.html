@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Sweetheart ❣️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 2rem;
+            animation: floatUp 5s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        /* Message Box */
+        .message-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(255, 0, 64, 0.3);
+            max-width: 500px;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 2rem;
+            text-shadow: 2px 2px 8px rgba(255, 0, 64, 0.3);
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s ease;
+        }
+
+        .yes-btn {
+            background: #ff4d6d;
+            color: white;
+        }
+
+        .yes-btn:hover {
+            background: #ff1c4c;
+        }
+
+        .no-btn {
+            background: #ddd;
+            color: black;
+            position: absolute;
+        }
+
+        /* Floating Message */
+        .thank-you-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+            animation: fadeIn 3s ease-in-out;
+            text-align: center;
+            z-index: 20;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="message-box" id="messageBox">
+        <h1>Happy Anniversary Sweetheart 🌹</h1>
+        <p>
+            I don't know if I'm good at these proposing stuff, but all I know is that I'm trying  
+            to be the best version of myself with you. I want you to have the best boyfriend (hubby)  
+            in the world.  
+        </p>
+        <p>
+            Thank you sooo much for being this sweet and nice with me till now, and I look forward  
+            to many more moments together.  
+        </p>
+        <p>
+            You told me I have to figure out what to do on this special day for both of us, so I tried.  
+            And I also have something to ask... Wanna know what it is?  
+        </p>
+        <div class="buttons">
+            <button class="btn yes-btn" onclick="showProposal()">Yes ❣️</button>
+            <button class="btn no-btn" id="noButton" onclick="moveNoButton()">No 🙈</button>
+        </div>
+    </div>
+
+    <div class="thank-you-message" id="thankYouMessage" style="display: none;">
+        Thank youuuu... Thank you alotttt my wifeii 💘🤭
+    </div>
+
+    <script>
+        function moveNoButton() {
+            let noBtn = document.getElementById("noButton");
+            let x = Math.random() * 20 - 10;  // Moves slightly within a smaller range
+            let y = Math.random() * 20 - 10;
+            noBtn.style.left = noBtn.offsetLeft + x + "px";
+            noBtn.style.top = noBtn.offsetTop + y + "px";
+        }
+
+        function showProposal() {
+            document.getElementById("messageBox").innerHTML = `
+                <h1>Will You Marry Me, Sweetheart ❣️</h1>
+                <div class="buttons">
+                    <button class="btn yes-btn" onclick="showHappiness()">Yes ❣️</button>
+                    <button class="btn no-btn" id="noButton" onclick="moveNoButton()">No 🙈</button>
+                </div>
+            `;
+            playMusic();
+        }
+
+        function showHappiness() {
+            document.getElementById("messageBox").style.display = "none";
+            document.getElementById("thankYouMessage").style.display = "block";
+        }
+
+        function playMusic() {
+            document.getElementById("bgMusic").play();
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            document.body.appendChild(heart);
+
+            let x = Math.random() * window.innerWidth;
+            let duration = Math.random() * 5 + 2;
+            let size = Math.random() * 25 + 15;
+
+            heart.style.left = `${x}px`;
+            heart.style.animationDuration = `${duration}s`;
+            heart.style.fontSize = `${size}px`;
+
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+
+</body>
+</html>
